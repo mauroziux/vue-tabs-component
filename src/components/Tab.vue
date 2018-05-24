@@ -1,7 +1,8 @@
 <template>
     <section v-show="isActive"
              :aria-hidden="! isActive"
-             class="tabs-component-panel"
+             class="tabs-component-panel tab-pane fade"
+             :class="{'show active':isActive}"
              :id="hash"
              role="tabpanel"
     >
@@ -17,6 +18,7 @@
             prefix: { default: '' },
             suffix: { default: '' },
             isDisabled:{ default: false },
+            icon:{ default: '' },
         },
 
         data: () => ({
@@ -26,7 +28,9 @@
 
         computed: {
             header() {
-                return this.prefix + this.name + this.suffix;
+                this.icon = '<span class="' + this.icon + '"></span> ';
+
+                return this.icon + this.prefix + this.name + this.suffix;
             },
 
             hash() {
